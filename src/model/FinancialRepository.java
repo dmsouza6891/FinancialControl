@@ -1,23 +1,25 @@
 package model;
 
+//Represents a financial repository
+
 public class FinancialRepository {
 	
-	private String name;   
-	private double balance;
+	private String name;    //name that identifies the financial repository
+	private double balance; //stored amount in the repository
 	
-	public FinancialRepository(String name, double balance) {
+	public FinancialRepository(String name, double balance) { //Constructor with two parameters.
 		this.name = name;
 		setBalance(balance);
 	}
 	
-	public void setBalance(double balance) {
+	public void setBalance(double balance) { //Configure the balance. In case of negative value it assigns zero value to the variable 
 		if(balance >= 0.0)
 			this.balance = balance;
 		else
 			this.balance = 0.0;
 	}
 	
-	public String getName() {
+	public String getName() { 
 		return this.name;
 	}
 	

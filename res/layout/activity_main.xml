@@ -1,16 +1,62 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLinearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     tools:context="com.example.appfinancialcontrol.MainActivity" >
-
+    
     <TextView
+        android:id="@+id/accountsTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/accounts"
+       	android:textSize="@dimen/title_size" />
+    
+    <ScrollView
+        android:id="@+id/accountsScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+       
+        <TableLayout
+            android:id="@+id/accountsTableLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+        </TableLayout>
+        
+    </ScrollView>
+    
+     <TextView
+        android:id="@+id/balanceTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
-
-</RelativeLayout>
+        android:text="@string/balance_total"
+       	android:textSize="@dimen/title_size"
+       	android:layout_gravity="center_horizontal" />
+    
+    <TextView
+        android:id="@+id/valueBalanceTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/balance_size"
+        android:layout_gravity="center_horizontal" />
+    
+   <ScrollView
+       android:id="@+id/buttonsScrollView"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:scrollbars="horizontal" >
+       
+        <Button
+            android:id="@+id/accountsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/account" />
+     
+    </ScrollView>
+    
+</LinearLayout>

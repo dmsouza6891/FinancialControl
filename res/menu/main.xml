@@ -3,9 +3,21 @@
     tools:context="com.example.appfinancialcontrol.MainActivity" >
 
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/create"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="@string/action_settings"/>
+        android:title="@string/newAccount"/>
+    
+     <item
+        android:id="@+id/delete"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/deleteAccount"/>
+     
+      <item
+        android:id="@+id/edit"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/editAccount"/>
 
 </menu>
