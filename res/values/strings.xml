@@ -4,20 +4,11 @@
     <string name="app_name">Controle Financeiro</string>
     <string name="action_settings">Action Settings</string>
     
-    <string name="accounts">Contas e Saldos:</string>
+    <string name="accounts_title">Contas e Saldos:</string>
     <string name="balance_total">Saldo Total:</string>
-    <string name="account">Contas</string>
     
-    <string name="newAccount">Nova Conta</string>
-    <string name="editAccount">Editar Conta</string>
-    <string name="deleteAccount">Excluir Conta</string>
+    <string name="accounts_menu">Contas</string>
     
     <string name="cipher">R$</string>
-    
-    <string-array name="optionsAccount">
-        <item>Criar</item>
-        <item>Excluir</item>
-        <item>Editar</item>
-    </string-array>
     
 </resources>

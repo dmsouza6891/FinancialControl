@@ -2,12 +2,12 @@ package model;
 
 //Represents a financial repository
 
-public class FinancialRepository {
+public class Account {
 	
 	private String name;    //name that identifies the financial repository
 	private double balance; //stored amount in the repository
 	
-	public FinancialRepository(String name, double balance) { //Constructor with two parameters.
+	public Account(String name, double balance) { //Constructor with two parameters.
 		this.name = name;
 		setBalance(balance);
 	}
@@ -29,7 +29,7 @@ public class FinancialRepository {
 	
 	@Override
 	public String toString() {
-		return String.format("RepositoryName:%s Balance:%.2f", this.name, this.balance);
+		return String.format("Account Name:%s Balance:%.2f", this.name, this.balance);
 	}
 
 }

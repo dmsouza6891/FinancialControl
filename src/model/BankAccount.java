@@ -1,8 +1,8 @@
 package model;
 
-//Represents an account-type financial repository 
+//Represents an bank account
 
-public class BankAccount extends FinancialRepository{
+public class BankAccount extends Account{
 	
 	private double overdraftAvailable;  //Overdraft amount available to account
 	private double overdraftUsed;  		//Overdraft amount used 

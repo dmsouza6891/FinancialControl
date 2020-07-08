@@ -8,13 +8,13 @@
         android:id="@+id/accountNameTextView"
         android:layout_width="@dimen/nameAccountWidth"
         android:layout_height="@dimen/nameAccountHeight" 
-        android:textSize="@dimen/viewDateAccount" />
+        android:textSize="@dimen/date_account" />
     
      <TextView
         android:id="@+id/accountBalanceTextView"
-        android:layout_width="@dimen/nameAccountWidth"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/nameAccountHeight"
-        android:textSize="@dimen/viewDateAccount" />
+        android:textSize="@dimen/date_account" />
     
 
 </TableRow>

@@ -5,14 +5,14 @@ import java.util.ListIterator;
 
 public class Operacoes {
 
-	public static double sumAccountsBalance(List<FinancialRepository> accounts) {
+	public static double sumAccountsBalance(List<Account> accounts) throws Exception {
 		
-		ListIterator<FinancialRepository> iterator = accounts.listIterator();
+		ListIterator<Account> iterator = accounts.listIterator();
 		double sum = 0;
-		
+
 		while(iterator.hasNext()) {
 			sum += iterator.next().getBalance();
-		}
+		}	
 		
 		return sum;
 	}
