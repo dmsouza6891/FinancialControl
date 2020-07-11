@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/addNewAccount"
+        android:gravity="center"
+        android:textSize="@dimen/subtitle_size"
+        android:paddingBottom="10dp" /> 
+        
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/selectAccount"
+        android:textSize="@dimen/text_size" />
+    
+    <RadioGroup
+        android:id="@+id/typeAccountRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center" >
+                
+        <RadioButton
+            android:id="@+id/typeAccountRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/account"
+            android:checked="true"
+            android:padding="5dp" />
+        
+        <RadioButton
+            android:id="@+id/typeBankAccountRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bankAccount"
+            android:padding="5dp" />
+        
+    </RadioGroup>
+    
+    <TableLayout
+    	android:id="@+id/formAddAccountsTableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >         
+    </TableLayout>
+   
+</LinearLayout>

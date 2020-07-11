@@ -4,8 +4,11 @@
     <dimen name="activity_horizontal_margin">8dp</dimen>
     <dimen name="activity_vertical_margin">8dp</dimen>
     
+    <dimen name="formElementsMargin">8dp</dimen>
+    
     <dimen name="title_size">30sp</dimen>
-    <dimen name="normal_text">18sp</dimen>
+    <dimen name="subtitle_size">25sp</dimen>
+    <dimen name="text_size">18sp</dimen>
     <dimen name="balance_size">32sp</dimen>
     <dimen name="date_account">28sp</dimen>
     

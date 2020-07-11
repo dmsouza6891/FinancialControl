@@ -4,11 +4,24 @@
     <string name="app_name">Controle Financeiro</string>
     <string name="action_settings">Action Settings</string>
     
-    <string name="accounts_title">Contas e Saldos:</string>
-    <string name="balance_total">Saldo Total:</string>
-    
-    <string name="accounts_menu">Contas</string>
-    
+    <string name="accountsTitle">Contas e Saldos</string>
+    <string name="accounts">Contas</string> 
+    <string name="account">Conta</string>
+    <string name="addNewAccount">Cadastrar Conta</string>
+    <string name="bankAccount">Conta Bancária</string>
     <string name="cipher">R$</string>
+    <string name="balance">Saldo</string>
+    <string name="balanceTotal">Saldo Total</string>
+    <string name="hintNameAccount">Para identificar sua conta</string>
+    <string name="hintBalanceAccount">Saldo atual da conta</string>
+    <string name="hintOverdraftAccount">Valor Disponível</string>
+    <string name="hintNameBankAccount">Instituição Financeira</string>
+    <string name="hintNumberAccount">0000-0</string>
+    <string name="nameOfAccount">Nome</string>
+    <string name="nameOfBank">Banco</string>
+    <string name="numberAgency">Agência</string>
+    <string name="numberAccount">Conta</string>
+    <string name="overdraft">Especial</string>
+    <string name="selectAccount">Selecione o tipo de conta</string>
     
 </resources>
