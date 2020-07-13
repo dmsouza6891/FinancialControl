@@ -5,11 +5,15 @@ import java.util.List;
 import java.util.ListIterator;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TextView;
@@ -18,7 +22,8 @@ import model.BankAccount;
 import model.Operacoes;
 
 public class MainActivity extends Activity {
-
+	
+	private static final String ROW_ID = "row_id";
 	private static final String TAG = "FinancialControl";
 	private List<Account> accounts;   //manage repositories received from the data file
 	private double sumAccountsBalance;   //store the balance of all repositories
@@ -37,7 +42,7 @@ public class MainActivity extends Activity {
 		accountsTableLayout = (TableLayout) findViewById(R.id.accountsTableLayout);
 		
 		Account teste1 = new Account("Dinheiro", 5.00);
-		BankAccount teste2 = new BankAccount("Itaú", 50.00, 100.00);
+		BankAccount teste2 = new BankAccount("Itaú", 50.00, 100.00, "341", "4554", "25321-3");
 		
 		accounts = new LinkedList<Account>();
 		accounts.add(teste1);
@@ -70,6 +75,16 @@ public class MainActivity extends Activity {
 		}
 		
 	}//end onCreate() 
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+	}
+	
+	@Override
+	protected void onStop() {
+		super.onStop();
+	}
 
 	public void makeAccountsGUI() {  //show the accounts 
 		ListIterator<Account> iterator = accounts.listIterator();
@@ -107,6 +122,42 @@ public class MainActivity extends Activity {
 		menu.add(Menu.NONE, ACCOUNTS_MENU_ID, Menu.NONE, R.string.accounts);
 		
 		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		
+		switch(item.getItemId()) {
+			case ACCOUNTS_MENU_ID:
+				final String[] possibleChoices = getResources().getStringArray(R.array.optionsAccountMenu);
+				
+				AlertDialog.Builder optionsBuilder = new AlertDialog.Builder(this);
+				optionsBuilder.setTitle(R.string.selectOption);
+				optionsBuilder.setItems(R.array.optionsAccountMenu, new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int item) {
+						switch(item) {
+							case 0: //add Account
+								Intent addNewAccount = new Intent(MainActivity.this, AddAccount.class);
+								startActivity(addNewAccount);
+								
+							case 1: //edit Account
+								
+								break;
+							case 2: //delete Account
+								
+								break;
+						}
+					}
+				});
+				
+				AlertDialog optionsDialog = optionsBuilder.create();
+				optionsDialog.show();
+				return true;
+		}
+		
+		return super.onOptionsItemSelected(item);
 	}
 	
 }//end MainActivity

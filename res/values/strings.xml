@@ -7,6 +7,7 @@
     <string name="accountsTitle">Contas e Saldos</string>
     <string name="accounts">Contas</string> 
     <string name="account">Conta</string>
+    <string name="numberAccount">Nº Conta</string>
     <string name="addNewAccount">Cadastrar Conta</string>
     <string name="bankAccount">Conta Bancária</string>
     <string name="cipher">R$</string>
@@ -20,8 +21,16 @@
     <string name="nameOfAccount">Nome</string>
     <string name="nameOfBank">Banco</string>
     <string name="numberAgency">Agência</string>
-    <string name="numberAccount">Conta</string>
+    <string name="ordinaryAccount">Conta Comum</string>
     <string name="overdraft">Especial</string>
+    <string name="save">Gravar</string>
     <string name="selectAccount">Selecione o tipo de conta</string>
+    <string name="selectOption">Selecione uma opção</string>
+    
+    <string-array name="optionsAccountMenu">
+        <item>Adicionar Conta</item>
+        <item>Editar Conta</item>
+        <item>Excluir Conta</item>
+    </string-array>
     
 </resources>

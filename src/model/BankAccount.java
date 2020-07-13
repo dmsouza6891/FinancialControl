@@ -6,9 +6,17 @@ public class BankAccount extends Account{
 	
 	private double overdraftAvailable;  //Overdraft amount available to account
 	private double overdraftUsed;  		//Overdraft amount used 
+	private String bank;	            //Name of bank
+	private String agencyNumber; 		//Bank Agency Number
+	private String accountNumber;       //Bank Account Number 
 	
-	public BankAccount(String name, double balance, double overdraftAvailable) { //Constructor with three parameters.
+	public BankAccount(String name, double balance, double overdraftAvailable, String bank, String agencyNumber, String accountNumber) { //Full Constructor.
 		super(name, balance);
+		
+		this.bank = bank;
+		this.agencyNumber = agencyNumber;
+		this.accountNumber = accountNumber;
+		
 		setOverdraftAvailable(overdraftAvailable);
 		if(balance < 0.0)
 			setOverdraftUsed(balance);
@@ -44,6 +52,30 @@ public class BankAccount extends Account{
 		return this.overdraftAvailable;
 	}
 	
+	public String getBank() {
+		return bank;
+	}
+
+	public void setBank(String bank) {
+		this.bank = bank;
+	}
+
+	public String getAgencyNumber() {
+		return agencyNumber;
+	}
+
+	public void setAgencyNumber(String agencyNumber) {
+		this.agencyNumber = agencyNumber;
+	}
+
+	public String getAccountNumber() {
+		return accountNumber;
+	}
+
+	public void setAccountNumber(String accountNumber) {
+		this.accountNumber = accountNumber;
+	}
+
 	@Override
 	public String toString() {
 		super.toString();

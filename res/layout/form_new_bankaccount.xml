@@ -20,6 +20,8 @@
 	        android:id="@+id/nameAccountEditText"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
+	        android:imeOptions="actionNext"
+	        android:inputType="text"
 	        android:hint="@string/hintNameAccount" />
         
     </TableRow>
@@ -40,7 +42,9 @@
 	        android:id="@+id/balanceAccountEditText"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:hint="@string/hintBalanceAccount" />
+	        android:hint="@string/hintBalanceAccount"
+	        android:inputType="numberDecimal"
+	        android:imeOptions="actionNext" />
         
     </TableRow>
     
@@ -60,7 +64,9 @@
 	        android:id="@+id/overdraftAccountEditText"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:hint="@string/hintOverdraftAccount" />
+	        android:hint="@string/hintOverdraftAccount"
+	        android:inputType="numberDecimal"
+	        android:imeOptions="actionNext" />
         
     </TableRow>
     
@@ -80,7 +86,9 @@
 	        android:id="@+id/nameBankAccountEditText"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:hint="@string/hintNameBankAccount" />
+	        android:hint="@string/hintNameBankAccount"
+	        android:inputType="text"
+	        android:imeOptions="actionNext" />
         
     </TableRow>
     
@@ -100,7 +108,9 @@
 	        android:id="@+id/numberAgencyAccountEditText"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:hint="@string/hintNumberAccount" />
+	        android:hint="@string/hintNumberAccount"
+	        android:inputType="text"
+	        android:imeOptions="actionNext" />
         
     </TableRow>
     
@@ -120,7 +130,9 @@
 	        android:id="@+id/numberAccountEditText"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:hint="@string/hintNumberAccount" />
+	        android:hint="@string/hintNumberAccount"
+	        android:inputType="text"
+	        android:imeOptions="actionDone" />
         
     </TableRow>
     

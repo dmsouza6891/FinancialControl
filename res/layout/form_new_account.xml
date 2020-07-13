@@ -20,7 +20,9 @@
 	        android:id="@+id/nameAccountEditText"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:hint="@string/hintNameAccount" />
+	        android:hint="@string/hintNameAccount"
+	        android:inputType="text"
+	        android:imeOptions="actionNext" />
         
     </TableRow>
     
@@ -40,7 +42,9 @@
 	        android:id="@+id/balanceAccountEditText"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:hint="@string/hintBalanceAccount" />
+	        android:inputType="numberDecimal"
+	        android:hint="@string/hintBalanceAccount"
+	        android:imeOptions="actionDone" />
         
     </TableRow>
     
