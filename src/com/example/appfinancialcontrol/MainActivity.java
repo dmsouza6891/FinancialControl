@@ -9,6 +9,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,9 +18,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TextView;
+import db.DatabaseConnector;
 import model.Account;
-import model.BankAccount;
 import model.Operacoes;
+import model.dao.AccountDao;
 
 public class MainActivity extends Activity {
 	
@@ -27,7 +29,9 @@ public class MainActivity extends Activity {
 	private static final String TAG = "FinancialControl";
 	private List<Account> accounts;   //manage repositories received from the data file
 	private double sumAccountsBalance;   //store the balance of all repositories
-
+	private DatabaseConnector connection;
+	private AccountDao accountDao;
+	
 	//reference views
 	private TextView valueBalanceTextView;
 	private TableLayout accountsTableLayout;
@@ -37,16 +41,21 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
+		connection = new DatabaseConnector(MainActivity.this);
+		accountDao = new AccountDao(connection);
+		
 		System.out.println("teste");
 		valueBalanceTextView = (TextView) findViewById(R.id.valueBalanceTextView);
 		accountsTableLayout = (TableLayout) findViewById(R.id.accountsTableLayout);
 		
-		Account teste1 = new Account("Dinheiro", 5.00);
-		BankAccount teste2 = new BankAccount("Itaú", 50.00, 100.00, "341", "4554", "25321-3");
-		
+		Cursor query = accountDao.getAll();
 		accounts = new LinkedList<Account>();
-		accounts.add(teste1);
-		accounts.add(teste2);
+		while(query.moveToNext()) {
+			String name = query.getString(query.getColumnIndex("name"));
+			Double balance = query.getDouble(query.getColumnIndex("balance"));
+			Account newAccount = new Account(name, balance);
+			accounts.add(newAccount);
+		}
 		
 		if(accounts.isEmpty()) {
 			LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
