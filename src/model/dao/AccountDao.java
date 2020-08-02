@@ -27,6 +27,16 @@ public class AccountDao {
 		
 	}//end insert()
 	
+	public void updateName(long id, String name) {
+		
+		ContentValues editAccount = new ContentValues();
+		editAccount.put("name", name);
+		
+		connection.open();
+		connection.getDatabase().update("accounts", editAccount, "id=" + id, null);
+		connection.close();
+	}
+	
 	public void deleteById(long id) {
 		connection.open();
 		connection.getDatabase().delete("accounts", "id=" + id, null);

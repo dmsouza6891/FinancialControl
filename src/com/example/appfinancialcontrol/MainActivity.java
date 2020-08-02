@@ -148,46 +148,21 @@ public class MainActivity extends Activity {
 					
 					@Override
 					public void onClick(DialogInterface dialog, int item) {
+						
 						switch(item) {
 							case 0: //add Account
 								Intent addNewAccount = new Intent(MainActivity.this, AddAccountActivity.class);
 								startActivity(addNewAccount);
 								break;
 							case 1: //edit Account
-								
+								Intent listAccountsToEdit = new Intent(MainActivity.this, EditAccountActivity.class);					
+								listAccountsToEdit.putExtra(ROW_ID, accounts);
+								startActivity(listAccountsToEdit);
 								break;
 							case 2: //delete Account
-								/*AlertDialog.Builder showRecordsBuilder = new AlertDialog.Builder(MainActivity.this);
-								showRecordsBuilder.setTitle(R.string.selectAccountToDelete);
-								final String[] possibleChoices = Operacoes.namesAccounts(accounts);
-								showRecordsBuilder.setItems(possibleChoices, new DialogInterface.OnClickListener(){
-									
-									@Override
-									public void onClick(DialogInterface dialog, int item) {
-										final int id = Operacoes.idByName(accounts, possibleChoices[item]);
-										AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-										builder.setTitle(R.string.confirm_title);
-										builder.setMessage(R.string.confirm_message);
-										builder.setPositiveButton(R.string.button_delete, 
-																  new DialogInterface.OnClickListener() {
-											                         @Override
-											                         public void onClick(DialogInterface dialog, int button) {
-											                        	 accountDao.deleteByName(id);
-											                        	 onResume();
-											                         }
-																  });
-										AlertDialog warning = builder.create();
-										warning.show();
-									}
-								});
-								
-								AlertDialog accounstDialog = showRecordsBuilder.create();
-								accounstDialog.show();*/
-								Intent listAccounts = new Intent(MainActivity.this, AccountListActivity.class);					
-								//String[] possibleChoices = Operacoes.namesAccounts(accounts);
-								//listAccounts.putExtra(ROW_ID, possibleChoices);
-								listAccounts.putExtra(ROW_ID, accounts);
-								startActivity(listAccounts);
+								Intent listAccountsToDelete = new Intent(MainActivity.this, DeleteAccountActivity.class);					
+								listAccountsToDelete.putExtra(ROW_ID, accounts);
+								startActivity(listAccountsToDelete);
 								break;
 						}
 					}

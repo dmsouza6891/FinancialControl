@@ -13,6 +13,7 @@ import android.widget.RadioGroup;
 import android.widget.TableLayout;
 import android.widget.Toast;
 import db.DatabaseConnector;
+import gui.util.Alert;
 import model.dao.AccountDao;
 
 public class AddAccountActivity extends Activity {
@@ -73,14 +74,11 @@ public class AddAccountActivity extends Activity {
 			try {
 				accountDao.insert(nameAccountEditText.getText().toString(),
 				              	  Double.parseDouble(balanceAccountEditText.getText().toString()));
-				Toast message = Toast.makeText(AddAccountActivity.this, "Conta adicionado com sucesso!", Toast.LENGTH_LONG);
-				message.show();
-				//Intent main = new Intent(AddAccountActivity.this, MainActivity.class);
+				Alert.showShortAlert(AddAccountActivity.this, "Conta adicionada com sucesso!");
 				finish();
 			}
 			catch(Exception e) {
-				Toast ex = Toast.makeText(AddAccountActivity.this, e.getMessage(), Toast.LENGTH_LONG);
-				ex.show();
+				Alert.showShortAlert(AddAccountActivity.this, e.getMessage());
 			}
 			
 		}

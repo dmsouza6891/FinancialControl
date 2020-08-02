@@ -31,6 +31,7 @@
     <string name="selectAccountAddDel">Selecione a conta</string>
     <string name="selectAccount">Selecione o tipo de conta</string>
     <string name="selectOption">Selecione uma opção</string>
+    <string name="update">Editar Dados</string>
    
     
     <string-array name="optionsAccountMenu">

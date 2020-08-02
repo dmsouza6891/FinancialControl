@@ -9,12 +9,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 import db.DatabaseConnector;
+import gui.util.Alert;
 import model.Account;
 import model.dao.AccountDao;
 
-public class AccountListActivity extends ListActivity {
+public class DeleteAccountActivity extends ListActivity {
 	
 	private ListView accountsList;
 	private ArrayList<Account> records;
@@ -49,7 +49,13 @@ public class AccountListActivity extends ListActivity {
 									   new DialogInterface.OnClickListener() {
 									       @Override
 			                               public void onClick(DialogInterface dialog, int button) {
-									    	   accountDao.deleteById(itemAccount.getId());
+									    	   try {
+									    		   accountDao.deleteById(itemAccount.getId()); 
+									    		   Alert.showShortAlert(DeleteAccountActivity.this, "Conta \"" + itemAccount.getName() + "\" excluída com sucesso!");
+									    	   }
+									    	   catch(Exception e) {
+									    		   Alert.showShortAlert(DeleteAccountActivity.this, e.getMessage());
+									    	   }
 			                       	           finish();
 			                               }
 								       });
@@ -57,5 +63,13 @@ public class AccountListActivity extends ListActivity {
 		confirmDialog.show();
 		
 	}//end onListItemClick
+	
+	@Override
+	protected void onStop() {
 		
+		connection.close();
+		super.onStop();
+		
+	}//end onStop
+	
 }//end class

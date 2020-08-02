@@ -24,6 +24,10 @@ public class Account implements Serializable{
 			this.balance = 0.0;
 	}
 	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 	public String getName() { 
 		return this.name;
 	}

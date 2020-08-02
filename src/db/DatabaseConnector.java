@@ -36,44 +36,6 @@ public class DatabaseConnector {
 		
 	}
 	
-	/*private class DatabaseOpenHelper extends SQLiteOpenHelper{
-		
-		public DatabaseOpenHelper(Context context, String name, CursorFactory factory, int version) {
-			super(context, name, factory, version);
-		}
-		
-		@Override
-		public void onCreate(SQLiteDatabase db) {
-			String createQuery = "CREATE TABLE accounts" +
-								 "(id integer primary key autoincrement," +
-								 "name TEXT, balance DOUBLE);";
-			
-			db.execSQL(createQuery);
-								 
-		}
-		
-		@Override
-		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {}
-	}*/
-	
-	
-	
-	/*public void insert(String name, double balance) {
-		
-		ContentValues newAccount = new ContentValues();
-		newAccount.put("name", name);
-		newAccount.put("balance", balance);
-		
-		open();
-		database.insert("Accounts", null, newAccount);
-	}
-	
-	public Cursor getOneAccount(long id) {
-		return database.query("Accounts", null, "id="+ id, null, null, null, null);
-	}*/
-	
-	
-	
 }//end of class
 
 

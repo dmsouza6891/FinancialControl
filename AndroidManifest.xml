@@ -27,7 +27,11 @@
             android:label="@string/app_name" >
         </activity>
         <activity 
-            android:name="com.example.appfinancialcontrol.AccountListActivity"
+            android:name="com.example.appfinancialcontrol.DeleteAccountActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity 
+            android:name="com.example.appfinancialcontrol.EditAccountActivity"
             android:label="@string/app_name" >
         </activity>
     </application>
