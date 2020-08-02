@@ -1,6 +1,6 @@
 package model.dao;
 
-import com.example.appfinancialcontrol.AddAccount;
+import com.example.appfinancialcontrol.AddAccountActivity;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -27,15 +27,15 @@ public class AccountDao {
 		
 	}//end insert()
 	
+	public void deleteById(long id) {
+		connection.open();
+		connection.getDatabase().delete("accounts", "id=" + id, null);
+		connection.close();
+	}
+	
 	public Cursor getAll() {
 		
-		Cursor result;
-		
-		connection.open();
-		result = connection.getDatabase().query("accounts", new String[] {"id", "name", "balance"}, null, null, null, null, "id");
-		
-		
-		return result;
+		return connection.getDatabase().query("accounts", new String[] {"id", "name", "balance"}, null, null, null, null, "id");
 		
 	}//end getAll()
 

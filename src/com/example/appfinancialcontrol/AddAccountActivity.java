@@ -15,7 +15,7 @@ import android.widget.Toast;
 import db.DatabaseConnector;
 import model.dao.AccountDao;
 
-public class AddAccount extends Activity {
+public class AddAccountActivity extends Activity {
 	
 	private RadioGroup optionsRadioGroup;
 	private TableLayout formTableLayout;
@@ -68,18 +68,18 @@ public class AddAccount extends Activity {
 		@Override
 		public void onClick(View v) {
 			
-			AccountDao accountDao = new AccountDao(new DatabaseConnector(AddAccount.this));
+			AccountDao accountDao = new AccountDao(new DatabaseConnector(AddAccountActivity.this));
 			
 			try {
 				accountDao.insert(nameAccountEditText.getText().toString(),
 				              	  Double.parseDouble(balanceAccountEditText.getText().toString()));
-				Toast message = Toast.makeText(AddAccount.this, "Conta adicionado com sucesso!", Toast.LENGTH_SHORT);
+				Toast message = Toast.makeText(AddAccountActivity.this, "Conta adicionado com sucesso!", Toast.LENGTH_LONG);
 				message.show();
-				Intent main = new Intent(AddAccount.this, MainActivity.class);
-				startActivity(main);
+				//Intent main = new Intent(AddAccountActivity.this, MainActivity.class);
+				finish();
 			}
 			catch(Exception e) {
-				Toast ex = Toast.makeText(AddAccount.this, e.getMessage(), Toast.LENGTH_LONG);
+				Toast ex = Toast.makeText(AddAccountActivity.this, e.getMessage(), Toast.LENGTH_LONG);
 				ex.show();
 			}
 			

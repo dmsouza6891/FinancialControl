@@ -11,8 +11,11 @@
     <string name="addNewAccount">Cadastrar Conta</string>
     <string name="bankAccount">Conta Bancária</string>
     <string name="cipher">R$</string>
+    <string name="confirm_title">Tem Certeza?</string>
+    <string name="confirm_message">Esta operação vai excluir permanentemente o registro</string>
     <string name="balance">Saldo</string>
     <string name="balanceTotal">Saldo Total</string>
+    <string name="button_delete">Excluir</string>
     <string name="hintNameAccount">Para identificar sua conta</string>
     <string name="hintBalanceAccount">Saldo atual da conta</string>
     <string name="hintOverdraftAccount">Valor Disponível</string>
@@ -21,16 +24,19 @@
     <string name="nameOfAccount">Nome</string>
     <string name="nameOfBank">Banco</string>
     <string name="numberAgency">Agência</string>
+    <string name="noAccountRecords">Não há contas cadastradas</string>
     <string name="ordinaryAccount">Conta Comum</string>
     <string name="overdraft">Especial</string>
     <string name="save">Gravar</string>
+    <string name="selectAccountAddDel">Selecione a conta</string>
     <string name="selectAccount">Selecione o tipo de conta</string>
     <string name="selectOption">Selecione uma opção</string>
+   
     
     <string-array name="optionsAccountMenu">
-        <item>Adicionar Conta</item>
-        <item>Editar Conta</item>
-        <item>Excluir Conta</item>
+        <item id="@+id/accountmenu_add">Adicionar Conta</item>
+        <item name="accountmenu_edit">Editar Conta</item>
+        <item name="accountmenu_delete">Excluir Conta</item>
     </string-array>
     
 </resources>

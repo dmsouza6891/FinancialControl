@@ -10,8 +10,8 @@ public class BankAccount extends Account{
 	private String agencyNumber; 		//Bank Agency Number
 	private String accountNumber;       //Bank Account Number 
 	
-	public BankAccount(String name, double balance, double overdraftAvailable, String bank, String agencyNumber, String accountNumber) { //Full Constructor.
-		super(name, balance);
+	public BankAccount(int id, String name, double balance, double overdraftAvailable, String bank, String agencyNumber, String accountNumber) { //Full Constructor.
+		super(id, name, balance);
 		
 		this.bank = bank;
 		this.agencyNumber = agencyNumber;

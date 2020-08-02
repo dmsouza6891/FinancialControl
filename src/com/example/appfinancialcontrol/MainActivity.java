@@ -1,7 +1,6 @@
 package com.example.appfinancialcontrol;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.ArrayList;
 import java.util.ListIterator;
 
 import android.app.Activity;
@@ -27,7 +26,7 @@ public class MainActivity extends Activity {
 	
 	private static final String ROW_ID = "row_id";
 	private static final String TAG = "FinancialControl";
-	private List<Account> accounts;   //manage repositories received from the data file
+	private ArrayList<Account> accounts;   //manage repositories received from the data file
 	private double sumAccountsBalance;   //store the balance of all repositories
 	private DatabaseConnector connection;
 	private AccountDao accountDao;
@@ -44,29 +43,38 @@ public class MainActivity extends Activity {
 		connection = new DatabaseConnector(MainActivity.this);
 		accountDao = new AccountDao(connection);
 		
-		System.out.println("teste");
 		valueBalanceTextView = (TextView) findViewById(R.id.valueBalanceTextView);
 		accountsTableLayout = (TableLayout) findViewById(R.id.accountsTableLayout);
 		
-		Cursor query = accountDao.getAll();
-		accounts = new LinkedList<Account>();
+	}//end onCreate() 
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		
+		//accounts = new LinkedList<Account>();
+		connection.open();
+		Cursor query = accountDao.getAll(); 
+		accounts = new ArrayList<Account>();
 		while(query.moveToNext()) {
+			int id = query.getInt(query.getColumnIndex("id"));
 			String name = query.getString(query.getColumnIndex("name"));
 			Double balance = query.getDouble(query.getColumnIndex("balance"));
-			Account newAccount = new Account(name, balance);
+			Account newAccount = new Account(id, name, balance);
 			accounts.add(newAccount);
 		}
-		
+		connection.close();
+	
 		if(accounts.isEmpty()) {
 			LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			View noAccountView = inflater.inflate(R.layout.no_account_view, null);
 			TextView message = (TextView) noAccountView.findViewById(R.id.no_account);
 			message.setText(String.format("%s%n%s", "Você ainda não possui contas cadastradas.","Acesse o menu \"Contas\" e crie uma."));
+			accountsTableLayout.removeAllViews();
 			accountsTableLayout.addView(noAccountView);
 		}
 		else {
 			makeAccountsGUI();
-		
 			try {
 				sumAccountsBalance = Operacoes.sumAccountsBalance(accounts); 
 			}
@@ -83,21 +91,18 @@ public class MainActivity extends Activity {
 			valueBalanceTextView.setText(String.format("%s %.02f", getResources().getString(R.string.cipher), sumAccountsBalance));   //show the total balance of all accounts
 		}
 		
-	}//end onCreate() 
-	
-	@Override
-	protected void onResume() {
-		super.onResume();
-	}
+	}//end onResume()
 	
 	@Override
 	protected void onStop() {
 		super.onStop();
 	}
-
+	
 	public void makeAccountsGUI() {  //show the accounts 
 		ListIterator<Account> iterator = accounts.listIterator();
-		 
+		
+		accountsTableLayout.removeAllViews(); //clean Layout for correct update an every call
+	
 		while(iterator.hasNext()) {
 			Account account = iterator.next();
 			makeAccountGUIRow(account.getName(), account.getBalance());
@@ -120,7 +125,6 @@ public class MainActivity extends Activity {
 
 	}//end makeAccountsGUI()
 
-	
 	//sets up a menu to manage the app's features
 	private final int ACCOUNTS_MENU_ID = Menu.FIRST;
 	
@@ -129,7 +133,7 @@ public class MainActivity extends Activity {
 		super.onCreateOptionsMenu(menu);
 		
 		menu.add(Menu.NONE, ACCOUNTS_MENU_ID, Menu.NONE, R.string.accounts);
-		
+		 
 		return true;
 	}
 	
@@ -138,8 +142,6 @@ public class MainActivity extends Activity {
 		
 		switch(item.getItemId()) {
 			case ACCOUNTS_MENU_ID:
-				final String[] possibleChoices = getResources().getStringArray(R.array.optionsAccountMenu);
-				
 				AlertDialog.Builder optionsBuilder = new AlertDialog.Builder(this);
 				optionsBuilder.setTitle(R.string.selectOption);
 				optionsBuilder.setItems(R.array.optionsAccountMenu, new DialogInterface.OnClickListener() {
@@ -148,14 +150,44 @@ public class MainActivity extends Activity {
 					public void onClick(DialogInterface dialog, int item) {
 						switch(item) {
 							case 0: //add Account
-								Intent addNewAccount = new Intent(MainActivity.this, AddAccount.class);
+								Intent addNewAccount = new Intent(MainActivity.this, AddAccountActivity.class);
 								startActivity(addNewAccount);
-								
+								break;
 							case 1: //edit Account
 								
 								break;
 							case 2: //delete Account
+								/*AlertDialog.Builder showRecordsBuilder = new AlertDialog.Builder(MainActivity.this);
+								showRecordsBuilder.setTitle(R.string.selectAccountToDelete);
+								final String[] possibleChoices = Operacoes.namesAccounts(accounts);
+								showRecordsBuilder.setItems(possibleChoices, new DialogInterface.OnClickListener(){
+									
+									@Override
+									public void onClick(DialogInterface dialog, int item) {
+										final int id = Operacoes.idByName(accounts, possibleChoices[item]);
+										AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+										builder.setTitle(R.string.confirm_title);
+										builder.setMessage(R.string.confirm_message);
+										builder.setPositiveButton(R.string.button_delete, 
+																  new DialogInterface.OnClickListener() {
+											                         @Override
+											                         public void onClick(DialogInterface dialog, int button) {
+											                        	 accountDao.deleteByName(id);
+											                        	 onResume();
+											                         }
+																  });
+										AlertDialog warning = builder.create();
+										warning.show();
+									}
+								});
 								
+								AlertDialog accounstDialog = showRecordsBuilder.create();
+								accounstDialog.show();*/
+								Intent listAccounts = new Intent(MainActivity.this, AccountListActivity.class);					
+								//String[] possibleChoices = Operacoes.namesAccounts(accounts);
+								//listAccounts.putExtra(ROW_ID, possibleChoices);
+								listAccounts.putExtra(ROW_ID, accounts);
+								startActivity(listAccounts);
 								break;
 						}
 					}
