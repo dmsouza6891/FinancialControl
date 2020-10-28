@@ -78,9 +78,10 @@ public class BankAccount extends Account{
 
 	@Override
 	public String toString() {
-		super.toString();
-		return String.format("Available Overdraft: %.2f Used Overdraft: %.2f Balance With Overdraft:%.02f", this.overdraftAvailable, 
-				                                                                                            this.overdraftUsed, getBalance());
+		String superAccount = super.toString();
+		return String.format("%s%nAvailable Overdraft: %.2f%nUsed Overdraft: %.2f%nBalance With Overdraft:%.02f",superAccount, 
+																											     this.overdraftAvailable, 
+				                                                                                                 this.overdraftUsed, getBalance());
 	}
 	
 }//end class

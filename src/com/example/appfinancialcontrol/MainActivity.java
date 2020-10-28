@@ -19,8 +19,10 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 import db.DatabaseConnector;
 import model.Account;
+import model.BankAccount;
 import model.Operacoes;
 import model.dao.AccountDao;
+import model.dao.BankAccountDao;
 
 public class MainActivity extends Activity {
 	
@@ -30,6 +32,7 @@ public class MainActivity extends Activity {
 	private double sumAccountsBalance;   //store the balance of all repositories
 	private DatabaseConnector connection;
 	private AccountDao accountDao;
+	private BankAccountDao bankAccountDao;
 	
 	//reference views
 	private TextView valueBalanceTextView;
@@ -42,6 +45,7 @@ public class MainActivity extends Activity {
 		
 		connection = new DatabaseConnector(MainActivity.this);
 		accountDao = new AccountDao(connection);
+		bankAccountDao = new BankAccountDao(connection);
 		
 		valueBalanceTextView = (TextView) findViewById(R.id.valueBalanceTextView);
 		accountsTableLayout = (TableLayout) findViewById(R.id.accountsTableLayout);
@@ -52,17 +56,31 @@ public class MainActivity extends Activity {
 	protected void onResume() {
 		super.onResume();
 		
-		//accounts = new LinkedList<Account>();
 		connection.open();
-		Cursor query = accountDao.getAll(); 
+		Cursor queryAccount = accountDao.getAll(); 
+		
 		accounts = new ArrayList<Account>();
-		while(query.moveToNext()) {
-			int id = query.getInt(query.getColumnIndex("id"));
-			String name = query.getString(query.getColumnIndex("name"));
-			Double balance = query.getDouble(query.getColumnIndex("balance"));
+		while(queryAccount.moveToNext()) {
+			int id = queryAccount.getInt(queryAccount.getColumnIndex("id"));
+			String name = queryAccount.getString(queryAccount.getColumnIndex("name"));
+			Double balance = queryAccount.getDouble(queryAccount.getColumnIndex("balance"));
 			Account newAccount = new Account(id, name, balance);
 			accounts.add(newAccount);
 		}
+		
+		Cursor queryBankAccount = bankAccountDao.getAll(); 
+		while(queryBankAccount.moveToNext()) {
+			int id = queryBankAccount.getInt(queryBankAccount.getColumnIndex("id"));
+			String name = queryBankAccount.getString(queryBankAccount.getColumnIndex("name"));
+			Double balance = queryBankAccount.getDouble(queryBankAccount.getColumnIndex("balance"));
+			Double overdraft = queryBankAccount.getDouble(queryBankAccount.getColumnIndex("overdraft"));
+			String bank = queryBankAccount.getString(queryBankAccount.getColumnIndex("bank"));
+			String agency = queryBankAccount.getString(queryBankAccount.getColumnIndex("agency"));
+			String accountNumber = queryBankAccount.getString(queryBankAccount.getColumnIndex("accountNumber"));
+			BankAccount newBankAccount = new BankAccount(id, name, balance, overdraft, bank, agency, accountNumber);
+			accounts.add(newBankAccount);
+		}
+		
 		connection.close();
 	
 		if(accounts.isEmpty()) {

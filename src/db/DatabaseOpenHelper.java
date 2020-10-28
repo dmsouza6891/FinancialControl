@@ -13,12 +13,22 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper{
 		
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		String createQuery = "CREATE TABLE accounts" +
+		String createQueryAccount = "CREATE TABLE accounts" +
 							 "(id integer primary key autoincrement," +
 							 "name TEXT,"+
 							 "balance DOUBLE);";
 		
-		db.execSQL(createQuery);
+		String createQueryBankAccount = "CREATE TABLE bank_accounts" +
+				 "(id integer primary key autoincrement," +
+				 "name TEXT,"+
+				 "balance DOUBLE,"+
+				 "overdraft DOUBLE,"+
+				 "bank TEXT,"+
+				 "agency TEXT,"+
+				 "accountNumber TEXT);";
+		
+		db.execSQL(createQueryAccount);
+		db.execSQL(createQueryBankAccount);
 							 
 	}
 		

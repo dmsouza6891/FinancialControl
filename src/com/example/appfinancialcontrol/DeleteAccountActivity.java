@@ -12,14 +12,20 @@ import android.widget.ListView;
 import db.DatabaseConnector;
 import gui.util.Alert;
 import model.Account;
+import model.BankAccount;
+import model.TypeAccount;
 import model.dao.AccountDao;
+import model.dao.BankAccountDao;
 
 public class DeleteAccountActivity extends ListActivity {
 	
 	private ListView accountsList;
 	private ArrayList<Account> records;
 	private AccountDao accountDao;
+	private BankAccountDao bankAccountDao;
 	private DatabaseConnector connection;
+	
+	private TypeAccount typeAccount;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -28,6 +34,7 @@ public class DeleteAccountActivity extends ListActivity {
 		
 		connection = new DatabaseConnector(this);
 		accountDao = new AccountDao(connection);
+		bankAccountDao = new BankAccountDao(connection);
 		
 		accountsList = getListView();
 		records = new ArrayList<Account>();
@@ -42,6 +49,14 @@ public class DeleteAccountActivity extends ListActivity {
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 
 		final Account itemAccount = records.get(position);
+		
+		if(records.get(position) instanceof BankAccount){ 
+			typeAccount = TypeAccount.BANK_ACCOUNT;
+		}
+		else {
+			typeAccount = TypeAccount.ACCOUNT;
+		}
+		
 		AlertDialog.Builder confirmAlert = new AlertDialog.Builder(this);
 		confirmAlert.setTitle(R.string.confirm_title);
 		confirmAlert.setMessage(R.string.confirm_message);
@@ -50,7 +65,10 @@ public class DeleteAccountActivity extends ListActivity {
 									       @Override
 			                               public void onClick(DialogInterface dialog, int button) {
 									    	   try {
-									    		   accountDao.deleteById(itemAccount.getId()); 
+									    		   if(typeAccount == TypeAccount.ACCOUNT)
+									    			   accountDao.deleteById(itemAccount.getId()); 
+									    		   else
+									    			   bankAccountDao.deleteById(itemAccount.getId());
 									    		   Alert.showShortAlert(DeleteAccountActivity.this, "Conta \"" + itemAccount.getName() + "\" excluída com sucesso!");
 									    	   }
 									    	   catch(Exception e) {

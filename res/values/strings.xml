@@ -16,6 +16,7 @@
     <string name="balance">Saldo</string>
     <string name="balanceTotal">Saldo Total</string>
     <string name="button_delete">Excluir</string>
+    <string name="editAccount">Editar Conta</string>
     <string name="hintNameAccount">Para identificar sua conta</string>
     <string name="hintBalanceAccount">Saldo atual da conta</string>
     <string name="hintOverdraftAccount">Valor Disponível</string>
